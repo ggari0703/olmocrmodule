@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  olmocr:
+    image: ocr-olmocr:latest
+    build:
+      context: .
+      dockerfile: docker/olmocr/Dockerfile
+    working_dir: /app
+    entrypoint: ["python", "-m", "src.ocr.cli"]
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+      - ./output:/app/output
+
+  trocr:
+    image: ocr-trocr:latest
+    build:
+      context: .
+      dockerfile: docker/trocr/Dockerfile
+    working_dir: /app
+    entrypoint: ["python", "-m", "src.ocr.cli", "--engine", "trocr"]
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+      - ./output:/app/output
+
+  donut:
+    image: ocr-donut:latest
+    build:
+      context: .
+      dockerfile: docker/donut/Dockerfile
+    working_dir: /app
+    entrypoint: ["python", "-m", "src.ocr.cli", "--engine", "donut"]
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+      - ./output:/app/output
