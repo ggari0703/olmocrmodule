@@ -4,4 +4,29 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+        # Core ML
+    "torch",
+    "torchvision",
+
+    # HuggingFace ecosystem
+    "transformers>=4.57.0",
+    "huggingface_hub>=0.23.0",
+    "safetensors",
+    "accelerate",
+
+    # FP8 / compressed tensor support (optional but safe)
+    "compressed-tensors",
+
+    # validation framework used internally
+    "pydantic>=2.0",
+
+    # image handling
+    "pillow",
+
+    # PDF rendering dependency (olmOCR uses it indirectly)
+    "pypdfium2",
+
+    # CLI / utils (optional but commonly needed)
+    "tqdm",
+]
